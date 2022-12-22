@@ -43,46 +43,32 @@ import java.util.regex.Matcher;
             Matcher matcher = pattern.matcher(mobileNumber);
             return matcher.matches();
         }
-
+        public static boolean isValidPassword(String password) {
+            System.out.println(password);
+            String passwordRegex = "^(.*).{8,}$";
+            Pattern pattern = Pattern.compile(passwordRegex);
+            Matcher matcher = pattern.matcher(password);
+            return matcher.matches();
+        }
 
         public static void main(String[] args) {
-            Scanner scan = new Scanner(System.in);
-            // Method To Check First Name With Regex Start With Cap And 3 Min. Character
-            System.out.println("Enter the first Name: ");
-            String firstName = scan.nextLine();
-            System.out.println("Enter the last Name :");
-            String lastName = scan.nextLine();
-            System.out.println("Enter The Mail : ");
-            String mail = scan.nextLine();
-            System.out.println("Enter The Mobile Number With County Code : ");
-            String mobileNumber = scan.nextLine();
-
-            if (Pattern.matches("^[A-Z][a-z]{2,}", firstName)) {
-                System.out.println("True");
-            } else {
-                System.out.println("False");
-            }
-
-            // Method To Check Last Name With Regex Start With Cap And 3 Min. Character
-            if (Pattern.matches("^[A-Z][a-z]{2,}", lastName)) {
-                System.out.println("True");
-            } else {
-                System.out.println("False");
-            }
-
-            // Method to check Valid Mail with Regex
-            if (Pattern.matches("^[a-zA-Z0-9]+[@][a-zA-Z]{3,15}[.][a-zA-Z]{2,5}", mail)) {
-                System.out.println("True");
-            } else {
-                System.out.println("False");
-            }
-            if (Pattern.matches("^[1-9]{2}[\\s][0-9]{10}$", mobileNumber)) {
-                System.out.println("True");
-            } else {
-                System.out.println("False");
-            }
-            scan.close();
+            UserInputValidation userInputValidation = new UserInputValidation();
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter first name: ");
+            String firstName = scanner.next();
+            System.out.println(UserInputValidation.isValidFirstName(firstName) ? "Valid" : "In Valid");
+            System.out.println("Enter last name: ");
+            String lastName = scanner.next();
+            System.out.println(UserInputValidation.isValidLastName(lastName) ? "Valid" : "In Valid");
+            System.out.println("Enter email: ");
+            String email = scanner.next();
+            System.out.println(userInputValidation.isValidEmail(email) ? "Valid" : "In Valid");
+            System.out.println("Enter mobile number: ");
+            String mobileNumber = scanner.next();
+            System.out.println(userInputValidation.isValidMobileNumber(mobileNumber) ? "Valid" : "In Valid");
+            System.out.println("Enter password: ");
+            String password = scanner.next();
+            System.out.println(userInputValidation.isValidPassword(password) ? "Valid" : "In Valid");
+            scanner.close();
         }
     }
-
-
