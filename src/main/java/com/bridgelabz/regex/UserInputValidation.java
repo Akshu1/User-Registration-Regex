@@ -36,6 +36,14 @@ import java.util.regex.Matcher;
 
             return matcher.matches();
         }
+        //Creating isValidMobileNumber method to validate the mobile format given by user using regex
+        public static boolean isValidMobileNumber(String mobileNumber) {
+            String mobileNumberRegex ="^[1-9]{2}[\\s][0-9]{10}$";
+            Pattern pattern = Pattern.compile(mobileNumberRegex);
+            Matcher matcher = pattern.matcher(mobileNumber);
+            return matcher.matches();
+        }
+
 
         public static void main(String[] args) {
             Scanner scan = new Scanner(System.in);
@@ -46,6 +54,8 @@ import java.util.regex.Matcher;
             String lastName = scan.nextLine();
             System.out.println("Enter The Mail : ");
             String mail = scan.nextLine();
+            System.out.println("Enter The Mobile Number With County Code : ");
+            String mobileNumber = scan.nextLine();
 
             if (Pattern.matches("^[A-Z][a-z]{2,}", firstName)) {
                 System.out.println("True");
@@ -66,9 +76,13 @@ import java.util.regex.Matcher;
             } else {
                 System.out.println("False");
             }
+            if (Pattern.matches("^[1-9]{2}[\\s][0-9]{10}$", mobileNumber)) {
+                System.out.println("True");
+            } else {
+                System.out.println("False");
+            }
             scan.close();
         }
     }
-
 
 
