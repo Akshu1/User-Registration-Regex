@@ -3,25 +3,20 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
     public class UserInputValidation {
-
         public static boolean isValidFirstName(String firstName) {
 
             String firstNameRegex = "[A-Z]{1}[a-z]{2,}";  //Declaring regex pattern to check the firstName
-
             Pattern pattern = Pattern.compile(firstNameRegex);
             Matcher matcher = pattern.matcher(firstName);
-
             return matcher.matches();
 
         }
 
         public static boolean isValidLastName(String lastName) {
+
             String firstNameRegex = "[A-Z]{1}[a-z]{2,}";
-
             Pattern pattern = Pattern.compile(firstNameRegex);
-
             Matcher matcher = pattern.matcher(lastName);
-
             return matcher.matches();
         }
         public static boolean isValidEmail(String email) {
@@ -31,9 +26,7 @@ import java.util.regex.Matcher;
                                 "(?:(\\.([A-Za-z]{2})))?$";;
 
             Pattern pattern = Pattern.compile(emailRegex);
-
             Matcher matcher = pattern.matcher(email);
-
             return matcher.matches();
         }
         //Creating isValidMobileNumber method to validate the mobile format given by user using regex
@@ -46,6 +39,15 @@ import java.util.regex.Matcher;
         public static boolean isValidPassword(String password) {
             System.out.println(password);
             String passwordRegex = "^(.*).{8,}$";
+            Pattern pattern = Pattern.compile(passwordRegex);
+            Matcher matcher = pattern.matcher(password);
+            return matcher.matches();
+        }
+
+        //Creating isValidPasswordUpperChar method to validate the password given by user using regex
+        public static boolean isValidPasswordUpperChar(String password) {
+            System.out.println(password);
+            String passwordRegex = "^(?=.*[A-Z]{1}).{8,}$";
             Pattern pattern = Pattern.compile(passwordRegex);
             Matcher matcher = pattern.matcher(password);
             return matcher.matches();
@@ -69,6 +71,10 @@ import java.util.regex.Matcher;
             System.out.println("Enter password: ");
             String password = scanner.next();
             System.out.println(userInputValidation.isValidPassword(password) ? "Valid" : "In Valid");
+            System.out.println("Enter password with One Upper Char: ");
+            String passwordUpperChar = scanner.next();
+            System.out.println(userInputValidation.isValidPasswordUpperChar(password) ? "Valid" : "In Valid");
             scanner.close();
+
         }
     }
