@@ -58,6 +58,13 @@ import java.util.regex.Matcher;
             Matcher matcher = pattern.matcher(password);
             return matcher.matches();
         }
+        public static boolean isValidPasswordWithSpecialChar(String password) {
+            System.out.println(password);
+            String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$" ;
+            Pattern pattern = Pattern.compile(passwordRegex);
+            Matcher matcher = pattern.matcher(password);
+            return matcher.matches();
+        }
 
         public static void main(String[] args) {
             UserInputValidation userInputValidation = new UserInputValidation();
@@ -83,6 +90,9 @@ import java.util.regex.Matcher;
             System.out.println("Enter password with atleast One Numeric: ");
             String passwordWithNumeric = scanner.next();
             System.out.println(userInputValidation.isValidPasswordWithNumeric(passwordWithNumeric) ? "Valid" : "In Valid");
+            System.out.println("Enter password with atleast One SpecialChar: ");
+            String passwordWithOneSpecialChar = scanner.next();
+            System.out.println(userInputValidation.isValidPasswordWithSpecialChar(passwordWithOneSpecialChar) ? "Valid" : "In Valid");
             scanner.close();
 
         }
