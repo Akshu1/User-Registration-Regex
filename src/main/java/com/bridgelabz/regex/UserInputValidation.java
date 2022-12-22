@@ -38,16 +38,22 @@ import java.util.regex.Matcher;
         }
         public static boolean isValidPassword(String password) {
             System.out.println(password);
-            String passwordRegex = "^(.*).{8,}$";
+            String passwordRegex =  "^(.*).{8,}$";;
             Pattern pattern = Pattern.compile(passwordRegex);
             Matcher matcher = pattern.matcher(password);
             return matcher.matches();
         }
-
-        //Creating isValidPasswordUpperChar method to validate the password given by user using regex
-        public static boolean isValidPasswordUpperChar(String password) {
+        //Creating isValidPassword method to validate the password given by user using regex
+        public static boolean isValidPasswordOneUpperChar(String password) {
             System.out.println(password);
             String passwordRegex = "^(?=.*[A-Z]{1}).{8,}$";
+            Pattern pattern = Pattern.compile(passwordRegex);
+            Matcher matcher = pattern.matcher(password);
+            return matcher.matches();
+        }
+        public static boolean isValidPasswordWithNumeric(String password) {
+            System.out.println(password);
+            String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$";
             Pattern pattern = Pattern.compile(passwordRegex);
             Matcher matcher = pattern.matcher(password);
             return matcher.matches();
@@ -71,9 +77,12 @@ import java.util.regex.Matcher;
             System.out.println("Enter password: ");
             String password = scanner.next();
             System.out.println(userInputValidation.isValidPassword(password) ? "Valid" : "In Valid");
-            System.out.println("Enter password with One Upper Char: ");
-            String passwordUpperChar = scanner.next();
-            System.out.println(userInputValidation.isValidPasswordUpperChar(password) ? "Valid" : "In Valid");
+            System.out.println("Enter password with atleast One Upper Char: ");
+            String passwordOneUpperChar = scanner.next();
+            System.out.println(userInputValidation.isValidPasswordOneUpperChar(passwordOneUpperChar) ? "Valid" : "In Valid");
+            System.out.println("Enter password with atleast One Numeric: ");
+            String passwordWithNumeric = scanner.next();
+            System.out.println(userInputValidation.isValidPasswordWithNumeric(passwordWithNumeric) ? "Valid" : "In Valid");
             scanner.close();
 
         }
